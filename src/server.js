@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const CourrierRoute = require("./routes/courrier");
 const PatientRoute = require("./routes/patient");
@@ -41,9 +42,13 @@ const DeviceRoute = require("./routes/devices");
 const WorkListItemRoute = require("./routes/worklistitem");
 const TemplateEditionRoute = require("./routes/templateedition");
 const AlertPatientRoute = require("./routes/alertpatient");
+const OrdonnancesRoute = require("./routes/ordonnaces");
+const PrescriptionRoute = require("./routes/prescription");
+const InformationMutuelleRoute = require("./routes/informationmutuelle");
 
-const port = 5000;
+const port = 3000;
 const server = express();
+server.use(express.json());
 
 server.use("/courrier", CourrierRoute);
 server.use("/patient", PatientRoute);
@@ -86,6 +91,19 @@ server.use("/devices", DeviceRoute);
 server.use("/work-list-item", WorkListItemRoute);
 server.use("/template-edition", TemplateEditionRoute);
 server.use("/alert-patient", AlertPatientRoute);
+server.use("/ordonnances", OrdonnancesRoute);
+server.use("/prescription", PrescriptionRoute);
+server.use("/information-mutuelle", InformationMutuelleRoute);
 
 
-server.listen(port, () => console.log(`Server is running on port ${port}`));
+
+mongoose
+    .connect(
+        "mongodb+srv://admin:admin@geny.aorcy6w.mongodb.net/?retryWrites=true&w=majority&appName=geny"
+    )
+    .then(() => {
+        server.listen(port, () => console.log(`Server is running on port ${port}`));
+    })
+    .catch((err) => {
+        console.log(err);
+    }); 

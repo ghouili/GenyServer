@@ -3,7 +3,7 @@ const CourrierController = require('../controllers/courrier');
 
 const route = express.Router();
 
-route.get("/hello", CourrierController.courrier);
+route.get("/all", CourrierController.GetAllData);
 
 
 module.exports = route

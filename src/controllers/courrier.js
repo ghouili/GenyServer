@@ -1,9 +1,24 @@
+const courrier = require("../models/courrier");
 
 
-const courrier = async (req, res) => {
-  return res
-    .status(201)
-    .json({ success: true, message: "Hello SouSou from controller !!", data: null });
+const GetAllData = async (req, res) => {
+  let AllData;
+  try {
+    AllData = await courrier.find();
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      success: false,
+      message: "somethin went wrong while extracting data",
+      data: null,
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "data was extracted successfuly",
+    data: AllData,
+  });
 };
 
-exports.courrier = courrier
+exports.GetAllData = GetAllData;
