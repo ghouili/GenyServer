@@ -1,14 +1,12 @@
 
 
 
-
-
-const lignereglements = require("../models/lignereglements");
+const lignereglement = require("../models/lignereglement");
 
 const GetAllData = async (req, res) => {
     let AllData;
     try {
-        AllData = await lignereglements.find();
+        AllData = await lignereglement.find();
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -29,7 +27,7 @@ const FindDataById = async (req, res) => {
 
     let existData;
     try {
-        existData = await lignereglements.findById(id);
+        existData = await lignereglement.findById(id);
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -63,7 +61,7 @@ const AddData = async (req, res) => {
     }
 
 
-    const newData = new lignereglements(req.body);
+    const newData = new lignereglement(req.body);
     try {
         await newData.save();
     } catch (error) {
@@ -97,10 +95,11 @@ const UpdateData = async (req, res) => {
         prix_initial,
         reglement
 
+
     } = req.body;
     let existData;
     try {
-        existData = await lignereglements.findById(id);
+        existData = await lignereglement.findById(id);
     } catch (error) {
         return res.status(500).json({
             success: false,
@@ -147,7 +146,7 @@ const DeleteData = async (req, res) => {
 
     let existData;
     try {
-        existData = await lignereglements.findById(id);
+        existData = await lignereglement.findById(id);
     } catch (error) {
         return res.status(500).json({
             success: false,

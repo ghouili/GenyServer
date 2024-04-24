@@ -78,10 +78,7 @@ server.use("/traitement-pma", TraitementPMARoute);
 server.use("/tentative-pma", TentativePMARoute);
 server.use("/traitement-valeur-pma", TraitementValeurPMARoute);
 server.use("/reglements", ReglementsRoute);
-server.use(
-  "/prescription-analyse-biologique",
-  PrescriptionAlanyseBiologiqueRoute
-);
+server.use("/prescription-analyse-biologique", PrescriptionAlanyseBiologiqueRoute);
 server.use("/analyse-biologique", AlanyseBiologiqueRoute);
 server.use("/collection-analyse-biologique", CollectionAnalyseBiologiqueRoute);
 server.use("/resultat-analyse-biologique", ResultatAnalysebiologiqueRoute);
@@ -99,13 +96,15 @@ server.use(
   "/src/uploads/images",
   express.static(path.join("src", "uploads", "images"))
 );
+
+
 mongoose
   .connect(
-    "mongodb+srv:admin:admin@brico.i9bvv4p.mongodb.net/?retryWrites=true&w=majority&appName=brico"
+    "mongodb+srv://admin:admin@geny.aorcy6w.mongodb.net/?retryWrites=true&w=majority&appName=geny"
   )
   .then(() => {
     server.listen(port, () => console.log(`Server is running on port ${port}`));
   })
   .catch((err) => {
     console.log(err);
-  });
+  }); 

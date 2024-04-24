@@ -19,7 +19,6 @@ const GetAllData = async (req, res) => {
     data: AllData,
   });
 };
-
 const FindDataById = async (req, res) => {
   const { id } = req.params;
 
@@ -51,21 +50,24 @@ const FindDataById = async (req, res) => {
 
 const AddData = async (req, res) => {
   if (!req.body) {
+
     return res.status(400).json({
       success: false,
       message: "Data wasn't sent",
       data: null,
     });
   }
+  console.log(req.body);
 
 
   const newData = new patient(req.body);
   try {
     await newData.save();
   } catch (error) {
+    console.log(error)
     return res.status(500).json({
       success: false,
-      message: "somethin went wrong while extracting data",
+      message: "somethin went wrong while saving data",
       data: null,
     });
   }

@@ -1,10 +1,5 @@
-
-
-
-
-
-
 const templateedition = require("../models/templateedition");
+
 
 const GetAllData = async (req, res) => {
     let AllData;
