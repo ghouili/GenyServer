@@ -44,6 +44,7 @@ const SuivistraitementPMARoute = require("./routes/suivitraitementpma");
 const DeviceRoute = require("./routes/devices");
 const WorkListItemRoute = require("./routes/worklistitem");
 const TemplateEditionRoute = require("./routes/templateedition");
+const ConsulatationGenycologRoute = require("./routes/consulatationGenycolog")
 
 const port = 5000;
 const server = express();
@@ -78,7 +79,10 @@ server.use("/traitement-pma", TraitementPMARoute);
 server.use("/tentative-pma", TentativePMARoute);
 server.use("/traitement-valeur-pma", TraitementValeurPMARoute);
 server.use("/reglements", ReglementsRoute);
-server.use("/prescription-analyse-biologique", PrescriptionAlanyseBiologiqueRoute);
+server.use(
+  "/prescription-analyse-biologique",
+  PrescriptionAlanyseBiologiqueRoute
+);
 server.use("/analyse-biologique", AlanyseBiologiqueRoute);
 server.use("/collection-analyse-biologique", CollectionAnalyseBiologiqueRoute);
 server.use("/resultat-analyse-biologique", ResultatAnalysebiologiqueRoute);
@@ -91,12 +95,12 @@ server.use("/devices", DeviceRoute);
 server.use("/work-list-item", WorkListItemRoute);
 server.use("/template-edition", TemplateEditionRoute);
 server.use("/user", UserRouter);
+server.use("/consultGynecol", ConsulatationGenycologRoute);
 
 server.use(
   "/src/uploads/images",
   express.static(path.join("src", "uploads", "images"))
 );
-
 
 mongoose
   .connect(
@@ -107,4 +111,4 @@ mongoose
   })
   .catch((err) => {
     console.log(err);
-  }); 
+  });

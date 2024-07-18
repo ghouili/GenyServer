@@ -25,10 +25,6 @@ const FindDataById = async (req, res) => {
   try {
     existData = await patient.findById(id);
   } catch (error) {
-    console.log("====================================");
-    console.log(id);
-    console.log(error);
-    console.log("====================================");
     return res.status(500).json({
       success: false,
       message: "somethin went wrong while extracting data",
